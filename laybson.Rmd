@@ -1,0 +1,45 @@
+---
+title: "EDA IMDB SERIES LAYBSON"
+output:  
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(here)
+theme_set(theme_bw())
+```
+
+```{r}
+episodes = read_csv("data/series_from_imdb.csv") %>%
+    filter(series_name %in% c("Roma", "Vikings", "Band of Brothers", "The Borgias"))
+```
+
+
+Distribuição Roma por temporada
+
+```{r}
+episodes %>%
+    ggplot(aes(x = series_name, y = UserRating)) + 
+    geom_boxplot(width = .3) +
+    geom_jitter(width = .1, size = 0.5, alpha = .5, color = "red") +
+    ylim(7, 10) + 
+    labs(x = "Episódios", y = "Avaliação no IMDB")
+```
+
+```{r}
+episodes %>%
+    ggplot(aes(x = as.character(season), y = UserRating)) + 
+    geom_density(y =0) +
+    geom_jitter(width = .1, size = 0.5, alpha = .5, color = "red") +
+    facet_wrap(~ series_name) +
+    ylim(7, 10) + 
+    labs(x = "Temporada", y = "Avaliação no IMDB")
+```
+
