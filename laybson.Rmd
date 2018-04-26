@@ -18,11 +18,22 @@ theme_set(theme_bw())
 
 ```{r}
 episodes = read_csv("data/series_from_imdb.csv") %>%
-    filter(series_name %in% c("Roma", "Vikings", "Band of Brothers", "The Borgias"))
+    filter(series_name %in% c("Roma", "Vikings", "Band of Brothers"))
 ```
 
 
-Distribuição Roma por temporada
+```{r}
+episodes %>%
+    group_by(series_name) %>% 
+    summarise(media = mean(UserRating)) %>% 
+    ggplot(aes(x = series_name, y = media)) + 
+    geom_col() +
+    labs(x = "Episódios", y = "Avaliação média no IMDB")
+```
+
+```{r}
+
+```
 
 ```{r}
 episodes %>%
@@ -34,9 +45,17 @@ episodes %>%
 ```
 
 ```{r}
+episodes %>% 
+    ggplot(aes(x = as.character(season), y = mean(UserRating))) + 
+    geom_bar(stat = "identity") +
+    facet_wrap(~ series_name) +
+    labs(x = "Temporada", y = "Avaliação média no IMDB")
+```
+
+```{r}
 episodes %>%
     ggplot(aes(x = as.character(season), y = UserRating)) + 
-    geom_density(y =0) +
+    geom_line() +
     geom_jitter(width = .1, size = 0.5, alpha = .5, color = "red") +
     facet_wrap(~ series_name) +
     ylim(7, 10) + 
