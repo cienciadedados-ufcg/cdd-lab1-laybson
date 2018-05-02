@@ -30,7 +30,7 @@ Band of Brothers - Produzida por Seven Spielberg e Tom Hanks, é uma das melhore
 
 Roma - Mostra a vida na Roma antiga, partindo da vitória de Julio Cesar nas camanhas gálicas em 52 a.C. Foi uma super produção da HBO. A série é excelente e historicamente precisa. Infelizmente só teve 2 temporadas por seu alto custo de produção.
 
-Vikings - Serie ainda em produção, que necessita de uma maior suspensão de descrença já que os resgistros históricos de seus personagens não são tão claros. É ambientada na era Viking no século IX, mostrando o estilo de vida e costumes nórdicos. A série é um sucesso de público.
+Vikings - Serie ainda em produção, que necessita de uma maior suspeição de descrença já que os resgistros históricos de seus personagens não são tão claros. É ambientada na era Viking no século IX, mostrando o estilo de vida e costumes nórdicos. A série é um sucesso de público.
 
 
 ## Qual das séries é melhor avaliada?
@@ -55,7 +55,7 @@ episodes %>%
     labs(x = "Séries", y = "Avaliação no IMDB")
 ```
 
-Todas as séries são muito bem avaliadas. E sem muita diferença se comparamos as médias. Band of Brothers aparece um pouco a frente, seguido por Roma.
+Todas as séries são muito bem avaliadas e sem muita diferença, se comparamos as médias. Band of Brothers aparece um pouco a frente, seguido por Roma.
 
 Ao compararmos as distribuições no boxplot, vemos um padrão semelhante, com Vikings tendo um número maior de votações discordantes da média, o que pode apenas ser reflexo de seu maior número de episódios e temporadas.
 
@@ -80,7 +80,7 @@ episodes %>%
     labs(x = "Temporada", y = "Avaliação no IMDB")
 ```
 
-Visualizando os valores por temporada, vemos que a primeira temporada de Vikings teve uma média e distribuição em posição bem inferior às demais séries, o que impacta em sua nota geral. Um dado curioso é a baixíssima distribuição de notas na segunda temporada de Vikings. Parece que todas as pessoas concordaram que a série mereceu um 8.6.
+Visualizando os valores por temporada, vemos que a primeira temporada de Vikings teve uma média e distribuição em posição bem inferior às demais séries, o que impacta em sua nota geral. Um dado curioso é a baixíssima dispersão de notas na segunda temporada de Vikings. Parece que todas as pessoas concordaram que a série mereceu um 8.6.
 
 ## Qual das séries é mais irregular?
 
@@ -110,3 +110,11 @@ episodes %>%
 ```
 
 Vendo por temporada, vemos que a 4ª temporada de Vikings é a mais irregular, variando de 8 à 9.5, enquanto a 2ª da mesma série é bastante regular. 
+
+
+
+--- 
+
+### Comentários
+
+Ótimo relatório, Laybson. O que acrescentaria nas análises seria apenas um mapeamento do que cada forma representa. Por exemplo: no segundo gráfico os pontos representam o que? Assim alguém leigo (que não vai olhar no código pra entender) poderia entender melhor o gráfico. Interessantes as explicações.
