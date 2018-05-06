@@ -1,0 +1,94 @@
+---
+title: "QUANTIDADE X QUALIDADE"
+output:  
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(here)
+library(gtools)
+theme_set(theme_bw())
+```
+
+```{r}
+episodes = read_csv("../data/series_from_imdb.csv")
+```
+```{r}
+mtas_temporadas = episodes %>%
+  group_by(series_name) %>%
+    filter(season %in% c(8))
+```
+
+```{r}
+series_mtas_temporadas = episodes %>%
+    filter(series_name %in% c(mtas_temporadas$series_name))
+```
+
+## Quantidade vs. Qualidade
+
+É saber popular que qualidade e quantidade geralmente são coisas não relacionadas, ou relacionadas inversamente. Quando séries são bem sucedidas em audiência e retorno financeiro, muitas vezes se extendem para muitas temporadas, iremos aqui avaliar se estas séries conseguem manter sua qualidade ao longo destas intermináveis temporadas.
+
+Ainda seguindo o relacionamento qualidade/quantidade, vamos ver se o número de episódios por temporada de uma série tem influência sobre a qualidade vista pelos seus espectadores.
+
+Para respondermos estas perguntas iremos utilizar dados advindos do IMDB.
+
+
+
+### Séries que se extendem para muitas temporadas conseguem manter sua qualidade?
+
+Para esta avaliação utilizaremos dados sobre as séries que possuem ao menos 8 temporadas. 
+
+```{r}
+series_mtas_temporadas$season <- factor(series_mtas_temporadas$season)
+series_mtas_temporadas %>%
+    group_by(season) %>% 
+    summarise(media = mean(UserRating)) %>% 
+    ggplot(aes(x = season, y = media, label = sprintf("%0.2f", round(media, digits = 2)))) + 
+    geom_col() +
+    geom_text(vjust=2, colour = "white", size = 1.5) +
+    labs(x = "Temporada", y = "Avaliação média no IMDB")
+```
+
+
+```{r}
+series_mtas_temporadas %>%
+  ggplot(aes(x = as.numeric(season), y = UserRating)) + 
+  geom_point(shape = 1) +
+  geom_smooth(method="loess", se = T) +
+  labs(x = "Temporada", y = "Avaliação média no IMDB")
+```
+
+A partir da 8ª temporadas as notas caem um pouco.
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+
+### Existe relação entre as avaliações de uma série e o número de episódios por temporada da mesma?
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
